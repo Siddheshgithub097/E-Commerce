@@ -2,7 +2,7 @@ package com.wipro.bankofamerica.estore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-// siddhesh - MBA-31
+// Siddhesh Pathare - MBA-311
 @SpringBootApplication
 public class EstoreApplication {
 
