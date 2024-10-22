@@ -5,7 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.wipro.bankofamerica.estore.model.User;
 import com.wipro.bankofamerica.estore.service.UserService;
@@ -21,7 +27,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<ResponseStructure<User>> loginUser(@RequestParam String username, @RequestParam String password) {
         ResponseStructure<User> response = new ResponseStructure<>();
-        User user = userService.loginUser(username, password); 
+        User user = userService.loginUser(username, password);
         response.setStatus(HttpStatus.OK.value());
         response.setMessage("Login successful");
         response.setData(user);
@@ -30,7 +36,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<ResponseStructure<User>> saveUser(@RequestBody User user) {
-        User savedUser = userService.saveUser(user); 
+        User savedUser = userService.saveUser(user);
         ResponseStructure<User> response = new ResponseStructure<>();
         response.setStatus(HttpStatus.CREATED.value());
         response.setMessage("User registered successfully");

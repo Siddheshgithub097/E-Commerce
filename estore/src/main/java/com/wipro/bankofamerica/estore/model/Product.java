@@ -9,12 +9,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "products")
-public class Product 
+public class Product
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(name = "productid")
     private Integer productId;
 
@@ -29,12 +29,12 @@ public class Product
 
     @Column(name = "amount")
     private String amount;
-    
+
     @Column(name = "product_status")
     private String status ;
 
-    
-    
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -90,6 +90,6 @@ public class Product
 	public void setStatus(String status) {
 		this.status = status;
 	}
-    
-    
+
+
 }

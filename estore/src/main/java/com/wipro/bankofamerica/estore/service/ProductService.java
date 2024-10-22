@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.wipro.bankofamerica.estore.model.Product;
 
-public interface ProductService 
+public interface ProductService
 {
 
 	public Iterable<Product> getAllProduct();

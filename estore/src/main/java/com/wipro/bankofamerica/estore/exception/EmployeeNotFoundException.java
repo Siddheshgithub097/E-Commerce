@@ -1,24 +1,21 @@
 package com.wipro.bankofamerica.estore.exception;
 
-
-public class InvalidCredentialsException extends RuntimeException
+public class EmployeeNotFoundException  extends RuntimeException
 {
 
 	private String message ;
 
-
-	public InvalidCredentialsException(String message)
-	{
+	
+	public EmployeeNotFoundException(String message) {
 		super();
 		this.message = message;
 	}
 
 
-	@Override
 	public String getMessage() {
 		return message;
 	}
 
-
-
+	
+	
 }

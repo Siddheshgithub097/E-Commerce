@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.wipro.bankofamerica.estore.model.User;
 
-public interface UserService 
+public interface UserService
 {
-	
+
 	public User loginUser(String username, String password);
 	public User saveUser(User user);
 	public List<User> getListByCity(String city);

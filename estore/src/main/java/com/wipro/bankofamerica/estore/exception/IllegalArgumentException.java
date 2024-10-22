@@ -3,8 +3,8 @@ package com.wipro.bankofamerica.estore.exception;
 public class IllegalArgumentException extends RuntimeException
 {
 	private String message;
-	
-	
+
+
 
 	public IllegalArgumentException(String message) {
 		super();
@@ -13,10 +13,11 @@ public class IllegalArgumentException extends RuntimeException
 
 
 
+	@Override
 	public String getMessage() {
 		return message;
 	}
 
-	
-	
+
+
 }
