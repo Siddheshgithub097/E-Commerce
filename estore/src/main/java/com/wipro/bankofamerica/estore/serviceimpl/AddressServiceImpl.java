@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
 import org.springframework.stereotype.Service;
 
+import com.wipro.bankofamerica.estore.exception.AddressNotFoundException;
 import com.wipro.bankofamerica.estore.model.Addresses;
 import com.wipro.bankofamerica.estore.repository.AddressRepository;
 import com.wipro.bankofamerica.estore.service.AddressService;
@@ -26,7 +27,7 @@ public class AddressServiceImpl implements AddressService {
 	@Override
     public Addresses getAddress(Integer id) {
         return addressRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Address with ID " + id + " not found."));
+                .orElseThrow(() -> new AddressNotFoundException("Address with ID " + id + " not found."));
     }
 
 
@@ -35,7 +36,7 @@ public class AddressServiceImpl implements AddressService {
 	   
 	    if (!addressRepository.existsById(id)) 
 	    {
-	        throw new RuntimeException("Address with ID " + id + " not found.");
+	        throw new AddressNotFoundException("Address with ID " + id + " not found.");
 	    }
 	    
 	    addressRepository.deleteById(id);
@@ -45,7 +46,7 @@ public class AddressServiceImpl implements AddressService {
 	public Addresses updateAddress(Integer id, Addresses address) {
 	   
 	    Addresses existingAddress = addressRepository.findById(id)
-	            .orElseThrow(() -> new RuntimeException("Address with ID " + id + " not found."));
+	            .orElseThrow(() -> new AddressNotFoundException("Address with ID " + id + " not found."));
 	    
 	    
 	    existingAddress.setStreet(address.getStreet());

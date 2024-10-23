@@ -1,5 +1,8 @@
 package com.wipro.bankofamerica.estore.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,9 +26,9 @@ public class Addresses
     private String state;
     private String zip;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")  // i m using foreign key
-
+    @ManyToOne  
+    @JoinColumn(name = "employee_id") 
+    @JsonBackReference
     private Employee employee;
 
 	public Integer getId() {

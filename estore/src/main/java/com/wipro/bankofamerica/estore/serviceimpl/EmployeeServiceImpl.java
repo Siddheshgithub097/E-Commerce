@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wipro.bankofamerica.estore.exception.EmployeeAlreadyPresentException;
 import com.wipro.bankofamerica.estore.exception.EmployeeNotFoundException;
+import com.wipro.bankofamerica.estore.model.Addresses;
 import com.wipro.bankofamerica.estore.model.Employee;
 import com.wipro.bankofamerica.estore.repository.EmployeeRepository;
 import com.wipro.bankofamerica.estore.service.EmployeeService;
@@ -17,18 +19,23 @@ public class EmployeeServiceImpl implements EmployeeService
 	@Autowired
 	private EmployeeRepository employeeRepository ;
 
+	
 	@Override
-	public Employee saveEmployee(Employee employee) 
-	{
-		Optional<Employee> existingemployee = employeeRepository.findByEmailId(employee.getEmailId());
-		
-		if(existingemployee.isPresent())
-		{
-			throw new RuntimeException("Employee with the email ID " + employee.getEmailId() + " already exists.");
-		}
-				
-		return employeeRepository.save(employee);
-			
+	public Employee saveEmployee(Employee employee) {
+	    Optional<Employee> existingEmployee = employeeRepository.findByEmailId(employee.getEmailId());
+	    
+	    if (existingEmployee.isPresent()) {
+	        throw new EmployeeAlreadyPresentException("Employee with the email ID " + employee.getEmailId() + " already exists.");
+	    }
+
+	   
+	    if (employee.getAddresses() != null) {
+	        for (Addresses address : employee.getAddresses()) {
+	            address.setEmployee(employee);
+	        }
+	    }
+	    
+	    return employeeRepository.save(employee);
 	}
 
 	@Override
